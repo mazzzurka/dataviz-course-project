@@ -9,7 +9,7 @@ const config = {
 			fallback: 'index.html' // makes error page
 		}),
 		paths: {
-			base: process.argv.includes('dev') ? '' : '/data_health'
+			base: process.argv.includes('dev') ? '' : '/dataviz-course-project'
 		}
 	}
 };
