@@ -1,143 +1,123 @@
 <script>
-	import { extent, scaleLinear } from 'd3';
-    import csv from './Map/official_data_uk.csv';
+	import { extent, scaleLinear, groups } from 'd3';
+  import csv from './Map/plot.csv'
 
-    import DropDownMenu from './UI/dropDownMenu.svelte';
+  let width = 0
+  let height = 0
 
-    let showObl = 'Львівська область'
+  
+  let margin = {
+      top: 70,
+      left: 60,
+      right: 10,
+      bottom: 20
+  }
 
-    let width = 0
-    let height = 0
+  $: chartWidth = width - margin.left - margin.right
+  $: chartHeight = height - margin.top - margin.bottom
 
-    let data = []
-    let margin = {
-        top: 20,
-        left: 60,
-        right: 60,
-        bottom: 20
-    }
 
-    $: chartWidth = width - margin.left - margin.right
-    $: chartHeight = height - margin.top - margin.bottom
+  $: xScale = scaleLinear().domain( extent(csv, d => +d.month)).range([margin.left, chartWidth - margin.right])
+  $: yScale = scaleLinear().domain([1, 4]).range([margin.top, chartHeight - 70])
+  $: rScale = scaleLinear().domain( extent(csv, d => +d.value)).range([1, 30])
 
-    csv.forEach(row => {
+  let yLabels = {}
+  $: groups(csv, d => d.index).forEach(el => {
+    yLabels[el[0]] = el[1][0].name
+  })
 
-        let obl = row.oblast
-        let start = new Date(row.started_at)
-        let end = new Date(row.finished_at)
-        let duration = end - start
+  
+  let tooltipData = null
+  let mouseX = 0
+  let mouseY = 0
 
-        data.push({
-            name: obl,
-            start: start,
-            end: end,
-            alertTime: duration,
-            hour: parseInt(row.started_at.substring(11, 13))
+  const getTolltipData = (event) => {
+		mouseX = event.layerX + 10
+		mouseY = event.layerY
 
-        })
-    });
+	}
 
-    $: dataByObl = data.filter(row => row.name == showObl)
-
-    $: xScale = scaleLinear().domain( extent(dataByObl, d => new Date(d.start))).range([margin.left, chartWidth])
-    $: yScale = scaleLinear().domain([0, 24]).range([chartHeight, margin.top])
-    $: rScale = scaleLinear().domain( extent(dataByObl, d => d.alertTime)).range([1, 30])
-
-    const parseDate = (date) => {
-        const year = new Date(date).getFullYear()
-        const month = new Date(date).getMonth() + 1
-        return `${month}/${year}`
-    }
-    let unicNames = {}
-
-    csv.forEach(row => {
-        unicNames[row.oblast] = 0
-    })
-
-    $: names = Object.keys(unicNames)
-
-    let selected = 'Львівська область'
-
-    $: if (selected) {
-        showObl=selected
-    }
-    //$: console.log(selected)
+  $: console.log(csv, yLabels)
 </script>
 
-<!-- <form>
-    <select bind:value={selected}>
-        {#each names as name}
-        <option value="{name}">{name}</option>
-        {/each}
-    </select>
-</form> -->
-
-<!-- <DropDownMenu  
-  placeholder={selected}
-  dropdownItems={names}
-bind:selectedItem={selected} /> -->
-
-
-<h1>{showObl}</h1>
+<h1>Заголовок графіка</h1>
 
 <div class="main" bind:clientWidth={width} bind:clientHeight={height}>
-    <svg {width} {height}>
-    {#each dataByObl as row}
-        <circle cx={xScale(row.start)} cy={yScale(row.hour)} r={rScale(row.alertTime)} fill={'#C1C1FF'}/>
+  <!-- svelte-ignore a11y-no-static-element-interactions -->
+  <!-- svelte-ignore missing-declaration -->
+  <svg {width} {height} on:mousemove={getTolltipData}>
+    <g class="x-axis">
+      {#each xScale.ticks(width > 800 ? 12 :  width > 500 ? 5 : 3) as tick}
+      <line x1={xScale(tick)} y1={margin.top} x2={xScale(tick)} y2={chartHeight} stroke="#e9e9e9" stroke-width={1}/>
+        <text x={xScale(tick)} y={chartHeight + 25} text-anchor="middle">{tick}</text>
+      {/each}
+    </g>
+
+    <g class="y-axis">
+      {#each yScale.ticks(4) as tick, i}
+        <line x1={margin.left / 2} y1={yScale(i+1)} x2={chartWidth} y2={yScale(i+1)} stroke="#e9e9e9" stroke-width={1}/>
+        <text x={margin.left / 2} y={yScale(i+1) - 35} text-anchor="start">{yLabels[tick]}</text>
+      {/each}
+    </g>
+
+    {#each csv as el}
+      <circle 
+        cx={xScale(el.month)} 
+        cy={yScale(el.index)} 
+        r={rScale(el.value)} 
+        fill={'#C1C1FF'}
+        on:mousemove={() => tooltipData = el}
+        on:mouseleave={() => tooltipData = null}
+        />
     {/each}
 
-    <line x1={margin.left} y1={chartHeight} x2={chartWidth} y2={chartHeight} stroke="#000" stroke-width={3}/>
-    <line x1={margin.left} y1={margin.top} x2={margin.left} y2={chartHeight} stroke="#000" stroke-width={3}/>
-
-    <g class="x-axis">
-        {#each xScale.ticks(width > 800 ? 10 :  width > 500 ? 5 : 3) as tick}
-        <line x1={xScale(tick)} y1={chartHeight} x2={xScale(tick)} y2={chartHeight + 6} stroke="#000" stroke-width={3}/>
-        <text x={xScale(tick)} y={chartHeight + 25} text-anchor="middle">{parseDate(tick)}</text>
-        {/each}
-    </g>
-    </svg>
+    <text class="month" x={chartWidth} y={chartHeight} text-anchor="end">{'Місяць'}</text>
+  </svg>
+  
+  {#if tooltipData}
+    <div class="tooltip" style={`top: ${mouseY}px; left: ${mouseX}px`}>
+      <p class="title">Місяць: {tooltipData.month}</p>
+      <p>Кількість: {tooltipData.value}</p>
+    </div>
+  {/if}
 </div>
 
 <style>
-
-    h1 {
-        margin-left: 150px;
-        font-size: 40px;
-        margin-bottom: 80px;
-    }
-    .main {
-        width: 100%;
-        height: 600px;
-        font-family: 'e-ukraine';
-        /*margin-bottom: 120px;
-        margin-left: 120px;*/
-    }
-
-    circle {
-        opacity: 0.75;
-    }
-
-    circle:hover {
-        fill: #D7E82A
-    }
-
-    .x-axis text {
-        font-family: 'e-ukraine';
-        font-size: 12px;
-    }
-
-    circle {
-		
-		transition: all 1s;
-	}
-
-    select {
-        height: 40px;
-        width: 200px;
-        
-    }
-
+  h1 {
+    font-size: 40px;
     
+  }
+  
+  .main {
+    width: 100%;
+    height: 600px;
+    font-family: "Montserrat", sans-serif;
+  }
 
+  circle {
+    opacity: 0.75;
+  }
 
+  circle:hover {
+    fill: #D7E82A
+  }
+
+  .x-axis text {
+    font-family: "Montserrat", sans-serif;
+    font-size: 12px;
+  }
+
+  circle {
+    transition: all 1s;
+  }
+  .month {
+    font-size: 13px;
+  }
+  .tooltip {
+		position: absolute;
+		color: #ffffff;
+		padding: 10px;
+		background-color: #5e5e5e87;
+		font-family: "Montserrat", sans-serif;
+	}
 </style>
