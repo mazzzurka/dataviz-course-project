@@ -3,7 +3,7 @@
     import csv  from './datatile.csv';
 	import { scaleLinear, selectAll } from 'd3';
 
-    let width = 1000
+    let width = 1200
 
     $: cellSize = width / 8
 
@@ -35,7 +35,7 @@
 </script>
 
 <div class="main">
-    <h1>map</h1>
+    <h1>Порівняльна статистика 01.01.2023-01.01.2024</h1>
 
     <svg {width} {height}>
         {#each mapData as block}
@@ -47,7 +47,7 @@
             on:mousemove={mouseOver(block)}
             on:mouseout={mouseOut}
         >
-            <rect width={cellSize} height={cellSize} fill='lightGray' stroke='#fff' stroke-width=5px />
+            <rect width={cellSize} height={cellSize} fill='#C1C1FF' stroke='#F4F4F4' stroke-width=5px />
             {#if block.key != 'KI' && block.key != 'OD'}
                 <text x={5} y={20} fill='#fff' >{block.key} </text>
             {:else}
@@ -60,18 +60,18 @@
             x1={10} 
             y1={scaleY(parseFloat(block['2022percent']))} 
             x2={cellSize - 10} 
-            y2={scaleY( parseFloat(block['2023percent']) )} stroke="White" stroke-width='3'></line>
+            y2={scaleY( parseFloat(block['2023percent']) )} stroke="#D7E82A" stroke-width='3'></line>
 
-            <circle cx={10} cy={scaleY(parseFloat(block['2022percent']))} r=3 fill="gray"></circle>
-            <circle cx={cellSize - 10} cy={scaleY( parseFloat(block['2023percent']) )} r=3 fill="gray"></circle>
+            <circle cx={10} cy={scaleY(parseFloat(block['2022percent']))} r=3 fill="#5A5BF3"></circle>
+            <circle cx={cellSize - 10} cy={scaleY( parseFloat(block['2023percent']) )} r=3 fill="#5A5BF3"></circle>
 
             <g class="label">
 
-                <text x={10} y={scaleY(parseFloat(block['2022percent'])) - 10} font-size='12' >
+                <text fill="#5E5E5E" x={10} y={scaleY(parseFloat(block['2022percent'])) - 10} font-size='12' >
                     {block['2022percent']} %
                 </text>
 
-                <text x={cellSize - 10} y={scaleY( parseFloat(block['2023percent']) ) - 10 } text-anchor="end" font-size='12'>
+                <text fill="#5E5E5E" x={cellSize - 10} y={scaleY( parseFloat(block['2023percent']) ) - 10 } text-anchor="end" font-size='12'>
                     {block['2023percent']} % 
                 </text>
 
@@ -86,6 +86,19 @@
 </div>
 
 <style>
+
+    h1 {
+        font-size: 40px;
+        width: 600px;
+        line-height: 140%;
+        margin-bottom: 80px;
+    }
+
+    .main {
+        margin-left: 150px;
+        margin-bottom: 180px;
+    }
+
     .label {
         display: none;
     }

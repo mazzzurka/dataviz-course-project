@@ -72,10 +72,10 @@
     </select>
 </form> -->
 
-<DropDownMenu 
+<!-- <DropDownMenu  
   placeholder={selected}
   dropdownItems={names}
-bind:selectedItem={selected} />
+bind:selectedItem={selected} /> -->
 
 
 <h1>{showObl}</h1>
@@ -83,7 +83,7 @@ bind:selectedItem={selected} />
 <div class="main" bind:clientWidth={width} bind:clientHeight={height}>
     <svg {width} {height}>
     {#each dataByObl as row}
-        <circle cx={xScale(row.start)} cy={yScale(row.hour)} r={rScale(row.alertTime)} fill={'#29384B'}/>
+        <circle cx={xScale(row.start)} cy={yScale(row.hour)} r={rScale(row.alertTime)} fill={'#C1C1FF'}/>
     {/each}
 
     <line x1={margin.left} y1={chartHeight} x2={chartWidth} y2={chartHeight} stroke="#000" stroke-width={3}/>
@@ -99,18 +99,26 @@ bind:selectedItem={selected} />
 </div>
 
 <style>
+
+    h1 {
+        margin-left: 150px;
+        font-size: 40px;
+        margin-bottom: 80px;
+    }
     .main {
-        width: 100%;
+        width: 80%;
         height: 600px;
         font-family: 'e-ukraine';
+        margin-bottom: 120px;
+        margin-left: 120px;
     }
 
     circle {
-        opacity: 0.5;
+        opacity: 0.75;
     }
 
     circle:hover {
-        fill: #10161d
+        fill: #D7E82A
     }
 
     .x-axis text {
@@ -128,5 +136,8 @@ bind:selectedItem={selected} />
         width: 200px;
         
     }
+
+    
+
 
 </style>

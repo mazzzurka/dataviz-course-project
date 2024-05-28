@@ -5,7 +5,10 @@
 
 	export let show = 'vil'
 
-	let width = 0, height = 0;
+	let width = 0
+	
+	$: height = width / 1.5;
+
 	let tooltipData = null
 
 	let mouseX = 0
@@ -14,7 +17,7 @@
 	$: console.log(csv)
 
 
-    export let colors = ['#d7e3f4','#29384B']
+    export let colors = ['#C1C1FF','#5A5BF3']
 
     const getColor = scaleLinear().domain([1, 1100]).range(colors)
 
@@ -44,7 +47,7 @@
 
 
 
-	$: projection = geoMercator().fitSize([width, height], geojson);
+	$: projection = geoMercator().fitSize([width, height- 50], geojson);
 	$: pathGenerator = geoPath(projection);
 
 	let counties = [];
@@ -69,14 +72,16 @@
 
 <main
 	bind:clientWidth={width}
-	bind:clientHeight={height}
 	on:mousemove={getTolltipData}
 >
+	<h1>ВІЛ-інфіковані, які перебувають на обліку станом на 01.01.2024</h1>
 	<svg
 		width={width}
 		height={height}
 		
 	>
+
+
 		{#each counties as obl}
             {@const name = obl.properties['UA_NAME']}
 
@@ -110,23 +115,31 @@
 </main>
 
 <style>
+	h1 {
+		font-size: 40px;
+		line-height: 140%;
+		width: 600px;
+	}
 
 	main {
 		justify-content: center;
-		width: 50vw;
-		height: 100vh;
+		width: 100%;
+		height: 100%;
 		overflow: hidden;
 		position: relative;
+		/* margin-left: 150px;
+		margin-bottom: 150px; */
+		
 	}
 
 	path {
-		stroke: white;
+		stroke: #F4F4F4;
 		transition: opacity 0.4s ease-in-out;
 		transition-delay: 0.8s;
 	}
 
 	path:hover {
-		fill: rgb(252, 230, 33);
+		fill: #D7E82A;
 	
 	}
     
@@ -134,6 +147,9 @@
         0% {opacity: 0;}
         100% {opacity: 1;}
     }
+
+	
+	
 
     .pulse {
         -webkit-animation: pulse 1s linear infinite ;
@@ -143,7 +159,7 @@
 		position: absolute;
 		color: #ffffff;
 		padding: 10px;
-		background-color: #09090981;
+		background-color: #5e5e5e87;
 		font-family: 'e-ukraine';
 	}
 
@@ -158,7 +174,7 @@
 	.stripe {
 		width: 100%;
 		height: 30px;
-		background: linear-gradient(90deg, #d7e3f4, #29384B);
+		background: linear-gradient(90deg, #C1C1FF, #5A5BF3);
 	}
 	.values {
 		display: flex;

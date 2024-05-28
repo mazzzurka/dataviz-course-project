@@ -15,14 +15,16 @@
     $: h = height - margin.top - margin.bottom
   
     let data = [
-      {type: 'Міський туризм', value: 54},
-      {type: 'Культурний туризм', value: 28.4},
-      {type: 'Відпочинок на пляжі', value: 23.1},
-      {type: 'Подієвий туризм', value: 22.8},
-      {type: 'Гастро туризм', value: 21.8},
-      {type: 'Активний відпочинок', value: 16},
-      {type: 'Екотуризм', value: 11},
-      {type: 'Рекреаційни туризм', value: 9}
+      {type: 'Гомосексуальним шляхом', value: 31},
+      {type: 'Гетеросексуальним шляхом', value: 772},
+      {type: 'Введення наркотичних речовин', value: 223},
+      {type: 'Переливання препаратів або крові', value: 0},
+      {type: 'Трансплантації донорських органів, клітин', value: 0},
+      {type: 'Інші медичні маніпуляції', value: 0},
+      {type: 'Професійне інфікування', value: 0},
+      {type: 'Немедичні втручання', value: 0},
+      {type: 'Діти народженні ВІЛ-позитивними', value: 5},
+      {type: 'Шлях інфікування не виявлено', value: 6}
     ]
   
     $: xScale = scaleLinear()
@@ -36,14 +38,14 @@
     //$: console.log(scaleLinear)
 </script>
   
-<h2>Bar Chart</h2>
-<div class="main" bind:clientWidth={width} bind:clientHeight={height}>
+<h2>Шляхи інфікування ВІЛ-інфекцією</h2>
+  <div class="main" bind:clientWidth={width} bind:clientHeight={height}>
     <svg {width} {height}>
 
         <g class="grid">
             {#each xScale.ticks(20) as tick, i}
             <line x1={xScale(tick)} y1={margin.top} x2={xScale(tick)} y2={h}
-            stroke={'#000'}
+            stroke={'#A9AD94'}
             stroke-width="0.5"/>
 
             <text x={xScale(tick)} y={h + 15} text-anchor="middle">{i % 2 ? tick:''}</text>
@@ -56,7 +58,7 @@
           y={yScale(i)} 
           width={xScale(d.value)} 
           height={(h / data.length) - 25}
-          fill={'#29384B'}/>
+          fill={'#5A5BF3'}/>
 
         <text x={margin.left} y={yScale(i) - 5} >{d.type}</text>
       {/each}
@@ -64,9 +66,20 @@
 </div>
   
 <style>
+  h2 {
+    font-size: 40px;
+    margin-bottom: 80px;
+    margin-left: 150px;
+    width: 500px;
+    line-height: 140%;
+  }
+
   .main {
-    width: 100%;
+    margin-left: 180px;
+    width: 70%;
     height: 500px;
+    margin-bottom: 120px;
+    
   }
    
 
