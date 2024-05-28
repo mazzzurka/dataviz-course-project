@@ -1,3 +1,6 @@
+<script>
+  import image from './vil.png'
+</script>
 
 <div class="container">
     <div class="content">
@@ -19,7 +22,7 @@
             </div> 
         </div>
         <div class="image-content">
-            <img src="./vil.png" alt="vil.png"/>
+            <img src={image} alt="vil.png"/>
         </div>
     </div>
 </div>
@@ -27,7 +30,8 @@
 <style>
 
 .container {
-    font-family: 'e-ukraine';
+    /*font-family: 'e-ukraine';*/
+    font-family: "Montserrat", sans-serif;
     display: flex;
     width: 100%;
     height: 80vh; /* 90% від висоти екрану */
@@ -44,7 +48,7 @@
 
 .content {
     display: flex;
-    width: 80%;
+    width: 100%;
     height: 100%;
 }
 

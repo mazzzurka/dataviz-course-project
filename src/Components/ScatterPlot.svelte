@@ -61,7 +61,7 @@
     $: if (selected) {
         showObl=selected
     }
-    $: console.log(selected)
+    //$: console.log(selected)
 </script>
 
 <!-- <form>
@@ -106,11 +106,11 @@ bind:selectedItem={selected} /> -->
         margin-bottom: 80px;
     }
     .main {
-        width: 80%;
+        width: 100%;
         height: 600px;
         font-family: 'e-ukraine';
-        margin-bottom: 120px;
-        margin-left: 120px;
+        /*margin-bottom: 120px;
+        margin-left: 120px;*/
     }
 
     circle {

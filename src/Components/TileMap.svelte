@@ -34,7 +34,7 @@
     
 </script>
 
-<div class="main">
+<div class="main" bind:clientWidth={width}>
     <h1>Порівняльна статистика 01.01.2023-01.01.2024</h1>
 
     <svg {width} {height}>
@@ -95,8 +95,9 @@
     }
 
     .main {
-        margin-left: 150px;
-        margin-bottom: 180px;
+        /*margin-left: 150px;*/
+        /*margin-bottom: 180px;*/
+        width: 100%;
     }
 
     .label {

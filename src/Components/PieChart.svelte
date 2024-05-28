@@ -66,15 +66,19 @@
 <style>
     .main {
 
-        margin: 0 80px 20px 80px;
-        height: 90vh;
-        width: 1000px;
+        margin: 0 0px 20px 0px;
+        /*height: 90vh;*/
+        /*width: 1000px;*/
+        width: 100%;
         display: grid;
-        grid-template-columns: 1fr 200px;
+        grid-template-columns: 1fr 1fr;
         align-items: center;
+        @media (max-width: 800px) {
+          grid-template-columns: 1fr;
+        }
     }
     .chart {
-        width: 100%;
+        /*width: 100%;*/
         width: 600px;
         height: 100%;
         height: 600px;
@@ -85,8 +89,8 @@
     }
 
     .legend {
-        max-width: 450px;
-        margin-left: 80px;
+        /*max-width: 450px;*/
+        /*margin-left: 80px;*/
     }
     .legend ul {
         margin: 0;

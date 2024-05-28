@@ -15,10 +15,17 @@
 	<Headerfirst></Headerfirst>
 
 	<PieChart></PieChart>
-	<BarChart> </BarChart>
+
+  <div class="barchart">
+    <BarChart> </BarChart>
+  </div>
+
 	<ScatterPlot> </ScatterPlot>
 	<!-- <Map show={'item'}> </Map> -->
-	<TileMap> </TileMap>
+  <div class="map">
+    <TileMap> </TileMap>
+  </div>
+
 	<div class="map">
 		<Map> </Map>
 	</div>
@@ -42,20 +49,32 @@
 	}
 	
 	.main {
-		background-color: #F4F4F4;
+		/*background-color: #F4F4F4;*/
+    
 		align-items: center;
+    width: calc(100% - 30px);
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
+
 	}
 	
 
 	div {
-		font-family: 'e-ukraine';
+		/*font-family: 'e-ukraine';*/
+    font-family: "Montserrat", sans-serif;
 		font-size: 47;
 	}
 	.map {
 		max-width: 1000px;
 		width: 100%;
-		margin: 0 auto;
-		
+		margin: 30px auto;
+    
 	}
-	
+	.barchart {
+    max-width: 1000px;
+		width: 100%;
+		margin: 0 auto;
+    padding: 0 20px;
+  }
 </style>

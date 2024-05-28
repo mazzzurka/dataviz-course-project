@@ -75,10 +75,10 @@
   }
 
   .main {
-    margin-left: 180px;
-    width: 70%;
+    /*margin-left: 180px;*/
+    width: 100%;
     height: 500px;
-    margin-bottom: 120px;
+    
     
   }
    
