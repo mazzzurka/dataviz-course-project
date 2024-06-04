@@ -35,7 +35,9 @@
 </script>
 
 <div class="main" bind:clientWidth={width}>
-    <h1>Порівняльна статистика 01.01.2023-01.01.2024</h1>
+    <h1>Порівняльна статистика хворих на туберкульоз
+    01.01.23-01.01.24</h1>
+    <p> Як і з ВІЛ/СНІД помітна тенденція зростання інфікованих туберкульозом, які щорічно збільшуються майже на 10 відсотків і в середньому по країні становить майже 70 випадків на 100 тисяч населення, що в 10-12 разів перевищує показники розвинених країн.</p>
 
     <svg {width} {height}>
         {#each mapData as block}
@@ -47,7 +49,7 @@
             on:mousemove={mouseOver(block)}
             on:mouseout={mouseOut}
         >
-            <rect width={cellSize} height={cellSize} fill='#C1C1FF' stroke='#F4F4F4' stroke-width=5px />
+            <rect width={cellSize} height={cellSize} fill='#C1C1FF' stroke='#FFF' stroke-width=5px />
             {#if block.key != 'KI' && block.key != 'OD'}
                 <text x={5} y={20} fill='#fff' >{block.key} </text>
             {:else}
@@ -62,7 +64,7 @@
             x2={cellSize - 10} 
             y2={scaleY( parseFloat(block['2023percent']) )} stroke="#D7E82A" stroke-width='3'></line>
 
-            <circle cx={10} cy={scaleY(parseFloat(block['2022percent']))} r=3 fill="#5A5BF3"></circle>
+            <circle cx={10} cy={scaleY(parseFloat(block['2022percent']))} r=3 fill="#fff"></circle>
             <circle cx={cellSize - 10} cy={scaleY( parseFloat(block['2023percent']) )} r=3 fill="#5A5BF3"></circle>
 
             <g class="label">
@@ -82,6 +84,7 @@
         {/each}
     </svg>
 
+    
 
 </div>
 
@@ -89,8 +92,13 @@
 
     h1 {
         font-size: 40px;
-        width: 600px;
+        width: 550px;
         line-height: 140%;
+        margin-bottom: 40px;
+    }
+    
+    p {
+        max-width: 650px;
         margin-bottom: 80px;
     }
 

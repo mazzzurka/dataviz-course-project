@@ -9,6 +9,11 @@
     let width = 600
     let height = 600
 
+    let tooltipData = null
+
+	let mouseX = 0
+	let mouseY = 0
+
     let margin = {
         top: 0,
         left: 0,
@@ -51,22 +56,37 @@
     <div class="chart" bind:clientWidth={width} bind:clientHeight={height}>
         <svg {width} {height} viewBox="{-width /2}, {-height /2}, {width}, {height}">
             {#each arcs as segment, i}
+                <!-- svelte-ignore a11y-no-static-element-interactions -->
                 <path 
                 d={arcPath(segment)}
                 fill={data[i].fill}
                 stroke={'#fff'}
+                on:mouseenter={() => {tooltipData={
+                    name: name,
+                    total: value
+                }}}
+                on:mouseleave={() =>{tooltipData= null}}
                 />
             {/each}
 
         </svg>
-    </div>  
+            {#if tooltipData}
+	        <div class="tooltip" style={`top: ${mouseY}px; left: ${mouseX}px`}>
+		        <p class="title">{tooltipData.name}</p>
+		        <p>На 100 000: {tooltipData.total}</p>
+	        </div>
+	    {/if}
+    </div> 
+    
 
 </div>
+
+
 
 <style>
     .main {
 
-        margin: 0 0px 20px 0px;
+        margin: 0 0px 150px 0px;
         /*height: 90vh;*/
         /*width: 1000px;*/
         width: 100%;
@@ -77,15 +97,27 @@
           grid-template-columns: 1fr;
         }
     }
+    .tooltip {
+		position: absolute;
+		color: #ffffff;
+		padding: 10px;
+		background-color: #5e5e5e87;
+		font-family: 'e-ukraine';
+	}
+
     .chart {
         /*width: 100%;*/
         width: 600px;
         height: 100%;
         height: 600px;
     }
+
+    
+
     path:hover {
-        stroke: #D7E82A;
-        stroke-width: 3px;
+        fill: #D7E82A;
+        /* stroke: #D7E82A;
+        stroke-width: 3px; */
     }
 
     .legend {
@@ -106,14 +138,16 @@
     }
 
     h2 {
-        font-size: 40px;
+        font-size: 42px;
         line-height: 120%;
+        width: 400px;
     }
 
     p {
         font-weight: 400;
         line-height: 140%;
         margin-bottom: 80px;
+        max-width: 550;
     }
 
     .legend ul li span {

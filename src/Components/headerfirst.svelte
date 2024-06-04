@@ -1,12 +1,12 @@
 <script>
-  import image from './vil.png'
+  import image from './img.png';
 </script>
 
 <div class="container">
     <div class="content">
         <div class="text-content">
             <h1>Загрозливе поєднання ВІЛ та туберкульозу</h1>
-            <p>Поєднання туберкульозу (ТБ) та ВІЛ-інфекції визначається як «коінфекція (ТБ/ВІЛ)». Під цим терміном мається на увазі активний легеневий або позалегеневий ТБ, який розвивається у ВІЛ-інфікованих осіб.</p>
+            <p>Поєднання туберкульозу (ТБ) та ВІЛ-інфекції визначається як «коінфекція (ТБ/ВІЛ)». Під цим терміном мається на увазі активний легеневий або позалеге-невий ТБ, який розвивається у ВІЛ-інфікованих осіб.</p>
             <div class="icon">
                 <svg class="svg" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64.94 67.51">
                 <defs>
@@ -29,20 +29,23 @@
 
 <style>
 
+
 .container {
     /*font-family: 'e-ukraine';*/
     font-family: "Montserrat", sans-serif;
     display: flex;
     width: 100%;
-    height: 80vh; /* 90% від висоти екрану */
+    height: 90vh; /* 90% від висоти екрану */
     justify-content: center;
     align-items: center;
+    margin-bottom: 100px;
 }
 
 .svg {
     margin-top: 120px;
-    width: 32px;
-    height: 32px;
+    width: 40px;
+    height: 40px;
+    background-blend-mode: multiply;
 }
 
 
@@ -53,7 +56,7 @@
 }
 
 .text-content {
-    max-width: 600px;
+    max-width: 570px;
     flex: 1;
     display: flex;
     flex-direction: column;
@@ -62,8 +65,10 @@
 }
 
 .text-content h1 {
-    margin: 0 0 20px 0;
-    font-size: 3em;
+    margin: 0 0 40px 0;
+    line-height: 120%;
+    font-size: 64px;
+
 }
 
 .text-content p {
@@ -75,6 +80,7 @@
 
 .text-content .icon {
     font-size: 2em;
+    
 }
 
 .image-content {
@@ -83,11 +89,15 @@
     justify-content: center;
     align-items: center;
 }
+.cls-1:hover {
+    fill: #C1C1FF;
+}
 
 .image-content img {
     max-width: 100%;
     max-height: 100%;
     height: auto;
     width: auto;
+    background-blend-mode: multiply;
 }
 </style>

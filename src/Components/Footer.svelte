@@ -7,9 +7,8 @@
       </ul>
     </div> -->
     <div class="footer__info">
-      <p>Виконала: </p>
-      <p>Мазур Тетяна </p>
-      <p>2 курс ГД </p>
+      <p>Виконала: Мазур Тетяна 3 курс кафедра ГД ЛНАМ  </p>
+      
     </div>
 </footer>
 
@@ -24,7 +23,7 @@
 
     .logo {
         font-size: 16px;
-        line-height: 140%;
+        line-height: 150%;
 		font-family: 'e-ukraine';
         color: rgb(255, 255, 255);
 		font-weight: 400;
@@ -40,6 +39,7 @@
     }
 
     .footer__info p {
-    margin: 0px 0;
+        max-width: 225px;
+        line-height: 140%;
     }
 </style>

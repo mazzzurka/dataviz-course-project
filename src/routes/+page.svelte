@@ -21,7 +21,7 @@
   </div>
 
 	<ScatterPlot> </ScatterPlot>
-	<!-- <Map show={'item'}> </Map> -->
+
   <div class="map">
     <TileMap> </TileMap>
   </div>
@@ -30,9 +30,27 @@
 		<Map> </Map>
 	</div>
 	
+	<h1>Висновки</h1>
+	<div class="conclusion-section">
+		<div class="conclusion">
+			<div class="conclusion-details">
+				<p>Туберкульоз є серйозною проблемою в Україні, інфікованих осіб щороку стає все більше.</p>
+				<p>Попередні заходи щодо контролю туберкульозу не виявилися достатньо ефективними.</p>
+				<p>Необхідно проводити більше інформаційних кампаній та забезпечити доступ до якісної медичної допомоги для всіх пацієнтів.</p>
+			</div>
+		</div>
 	
+		<div class="conclusion">
+			<div class="conclusion-details">
+				<p>ВІЛ/СНІД залишається однією з найбільш небезпечних інфекційних хвороб в світі.</p>
+				<p>Населення України також страждає від поширення ВІЛ-інфекції, і це вимагає негайних заходів з контролю та профілактики.</p>
+				<p>Пропаганда безпечного сексуального контакту, розповсюдження презервативів та регулярні медичні обстеження можуть допомогти у запобіганні поширенню хвороби.</p>
+			</div>
+		</div>
+	</div>
 
 </div>
+
 
 <Footer> </Footer>
 
@@ -46,16 +64,47 @@
 	:global(body) {
 		margin: 0;
 		padding: 0;
+		
 	}
+	
+	h1 {
+		font-size: 40px;
+		margin-bottom: 40px;
+	}
+
+	.conclusion-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 40px;
+	margin-bottom: 120px;
+	}
+
+	.conclusion {
+		background-color: #c1c1ff7b;
+		padding: 30px 30px 30px 30px;
+		border-radius: 16px;
+	}
+
+	.conclusion h3 {
+		font-size: 24px;
+		line-height: 150%;
+		margin-bottom: 20px;
+	}
+
+	.conclusion-details p {
+		margin: 20px 0;
+	}
+
 	
 	.main {
 		/*background-color: #F4F4F4;*/
     
 		align-items: center;
-    width: calc(100% - 30px);
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 15px;
+    	width: calc(100% - 30px);
+    	max-width: 1200px;
+    	margin: 0 auto;
+    	padding: 0 15px;
+		line-height: 140%;
 
 	}
 	
@@ -66,13 +115,13 @@
 		font-size: 47;
 	}
 	.map {
-		max-width: 1000px;
+		
 		width: 100%;
-		margin: 30px auto;
+		margin: 120px auto;
     
 	}
 	.barchart {
-    max-width: 1000px;
+    
 		width: 100%;
 		margin: 0 auto;
     
