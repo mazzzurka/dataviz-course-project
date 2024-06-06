@@ -85,9 +85,7 @@
     /*margin-left: 180px;*/
     width: 100%;
     height: 500px;
-    margin-bottom: 150px;
-    
-    
+    margin-bottom: 100px;
   }
    
   rect:hover {

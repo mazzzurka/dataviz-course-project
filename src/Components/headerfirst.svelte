@@ -28,31 +28,42 @@
 </div>
 
 <style>
-
-
 .container {
-    /*font-family: 'e-ukraine';*/
     font-family: "Montserrat", sans-serif;
     display: flex;
     width: 100%;
-    height: 90vh; /* 90% від висоти екрану */
+    height: 100vh;
     justify-content: center;
     align-items: center;
     margin-bottom: 100px;
 }
 
 .svg {
-    margin-top: 120px;
+    margin-top: 80px;
+    margin-bottom: 30px;
     width: 40px;
     height: 40px;
     background-blend-mode: multiply;
+    animation: jump 2s infinite;
 }
 
+@keyframes jump {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
 
 .content {
     display: flex;
     width: 100%;
     height: 100%;
+    flex-direction: row;
 }
 
 .text-content {
@@ -61,14 +72,13 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding-right: 20px;
+    /*padding-right: 20px;*/
 }
 
 .text-content h1 {
     margin: 0 0 40px 0;
     line-height: 120%;
     font-size: 64px;
-
 }
 
 .text-content p {
@@ -80,7 +90,6 @@
 
 .text-content .icon {
     font-size: 2em;
-    
 }
 
 .image-content {
@@ -89,6 +98,7 @@
     justify-content: center;
     align-items: center;
 }
+
 .cls-1:hover {
     fill: #C1C1FF;
 }
@@ -99,5 +109,18 @@
     height: auto;
     width: auto;
     background-blend-mode: multiply;
+}
+
+@media (max-width: 768px) {
+  .content {
+    flex-direction: column-reverse !important;
+  }
+  .text-content h1 {
+    font-size: 36px;
+    margin-bottom: 10px;
+  }
+  .text-content {
+    font-size: 14px;
+  }
 }
 </style>

@@ -21,24 +21,7 @@
 
     const getColor = scaleLinear().domain([1, 1100]).range(colors)
 
-	// const geojsonPath =
-	// 	'https://raw.githubusercontent.com/romansverdan/Ukraine-Map/main/ukraine-adm-regions.json';
-	// let geojson;
-	// json(geojsonPath).then((data) => (geojson = data));
 
-//     $: oblData = csv.filter(row => {
-//         return row.level === 'oblast'
-//     })
-
-//     let mapData = {}
-//   $: dataByObl = groups(oblData, d => d.oblast).forEach(el => {
-//     mapData[el[0]] = {
-//         values: el[1],
-//         total: el[1].lenth
-//       }
-//   })
-
-    // $: console.log(mapData)
 	let mapData = {}
 
 	csv.forEach(row => {
@@ -123,7 +106,6 @@
 	h1 {
 		font-size: 40px;
 		line-height: 140%;
-		width: 750px;
 		margin-bottom: 40px;
 	}
 
@@ -159,17 +141,13 @@
 	
 	}
     
-    @-webkit-keyframes pulse {
-        0% {opacity: 0;}
-        100% {opacity: 1;}
-    }
-
-	
-	
-
-    .pulse {
-        -webkit-animation: pulse 1s linear infinite ;
-    }
+  @-webkit-keyframes pulse {
+      0% {opacity: 0;}
+      100% {opacity: 1;}
+  }
+  .pulse {
+    -webkit-animation: pulse 1s linear infinite ;
+  }
 
 	.tooltip {
 		position: absolute;
@@ -178,6 +156,18 @@
 		background-color: #5e5e5e87;
 		font-family: "Montserrat", sans-serif;
 	}
+  .tooltip p{
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  p.title {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  .tooltip p strong {
+    font-weight: bold;
+  }
 
 	.legend {
 		/* background-color: #29384B; */
@@ -186,12 +176,28 @@
 		left: 30px;
 		width: 200px;
 	}
-
-	.stripe {
+  .stripe {
 		width: 100%;
 		height: 30px;
 		background: linear-gradient(90deg, #C1C1FF, #5A5BF3);
 	}
+  @media (max-width: 768px) {
+    .legend {
+      bottom: 0;
+      left: 0;
+      height: 100px;
+      width: 130px;
+    }
+    .stripe { 
+      height: 14px;
+    }
+    .legend p {
+      margin: 0;
+      padding: 0;
+    }
+  }
+
+	
 	.values {
 		display: flex;
 		justify-content: space-between;

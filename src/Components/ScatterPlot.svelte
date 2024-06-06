@@ -8,16 +8,16 @@
   
   let margin = {
       top: 70,
-      left: 60,
+      left: 30,
       right: 10,
       bottom: 20
   }
 
-  $: chartWidth = width - margin.left - margin.right
+  $: chartWidth = width - margin.left
   $: chartHeight = height - margin.top - margin.bottom
 
 
-  $: xScale = scaleLinear().domain( extent(csv, d => +d.month)).range([margin.left, chartWidth - margin.right])
+  $: xScale = scaleLinear().domain( extent(csv, d => +d.month)).range([margin.left, chartWidth])
   $: yScale = scaleLinear().domain([1, 4]).range([margin.top, chartHeight - 70])
   $: rScale = scaleLinear().domain( extent(csv, d => +d.value)).range([1, 30])
 
@@ -94,7 +94,7 @@
 
   p {
     line-height: 140%;
-    max-width: 550px;
+    /*max-width: 550px;*/
     margin-bottom: 80px;
   }
 
@@ -110,10 +110,14 @@
 
   circle {
     opacity: 0.75;
+    stroke: #666;
+    stroke-width: 0.5;
   }
 
   circle:hover {
-    fill: #D7E82A
+    fill: #D7E82A;
+    stroke: #000;
+    stroke-width: 2;
   }
 
   .x-axis text {
@@ -122,7 +126,7 @@
   }
 
   circle {
-    transition: all 1s;
+    transition: all 0.5s;
   }
   .month {
     font-size: 13px;
@@ -136,4 +140,14 @@
 		font-family: "Montserrat", sans-serif;
     line-height: 120%;
 	}
+  .tooltip p{
+    display: block;
+    margin: 0;
+    padding: 0;
+  }
+  p.title {
+    margin-bottom: 10px;
+    font-size: 18px;
+  }
+  
 </style>

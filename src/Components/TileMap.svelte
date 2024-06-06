@@ -19,7 +19,7 @@
     })
 
     $: scaleY = scaleLinear()
-        .domain([0, 100])
+        .domain([0, 120])
         .range([cellSize, 0])
 
     const mouseOver = (el) => {
@@ -49,7 +49,7 @@
             on:mousemove={mouseOver(block)}
             on:mouseout={mouseOut}
         >
-            <rect width={cellSize} height={cellSize} fill='#C1C1FF' stroke='#FFF' stroke-width=5px />
+            <rect width={cellSize} height={cellSize} fill={block.key === 'CM' || block.key === 'LH' ? '#ccc' : '#C1C1FF'} stroke='#FFF' stroke-width=5px />
             {#if block.key != 'KI' && block.key != 'OD'}
                 <text x={5} y={20} fill='#fff' >{block.key} </text>
             {:else}
@@ -62,10 +62,10 @@
             x1={10} 
             y1={scaleY(parseFloat(block['2022percent']))} 
             x2={cellSize - 10} 
-            y2={scaleY( parseFloat(block['2023percent']) )} stroke="#D7E82A" stroke-width='3'></line>
+            y2={scaleY( parseFloat(block['2023percent']) )} stroke="#353589" stroke-width='3'></line>
 
-            <circle cx={10} cy={scaleY(parseFloat(block['2022percent']))} r=3 fill="#fff"></circle>
-            <circle cx={cellSize - 10} cy={scaleY( parseFloat(block['2023percent']) )} r=3 fill="#5A5BF3"></circle>
+            <circle cx={10} cy={scaleY(parseFloat(block['2022percent']))} r=4 fill="#5A5BF3"></circle>
+            <circle cx={cellSize - 10} cy={scaleY( parseFloat(block['2023percent']) )} r=4 fill="#5A5BF3"></circle>
 
             <g class="label">
 
@@ -92,7 +92,6 @@
 
     h1 {
         font-size: 40px;
-        width: 550px;
         line-height: 140%;
         margin-bottom: 40px;
     }
@@ -106,10 +105,13 @@
         /*margin-left: 150px;*/
         /*margin-bottom: 180px;*/
         width: 100%;
+        margin-bottom: 100px;
     }
 
     .label {
         display: none;
     }
-
+    .label text {
+      font-weight: bold;
+    }
 </style>
