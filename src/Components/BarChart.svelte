@@ -68,6 +68,7 @@
   
 <style>
   h2 {
+    font-family: "Montserrat", sans-serif;
     font-size: 40px;
     margin-bottom: 40px;
     margin-left: 0px;
@@ -94,7 +95,7 @@
   }
 
   text {
-    font-family: 'e-ukraine';
+    font-family: "Montserrat", sans-serif;
     font-size: 13px;
   }
 </style>

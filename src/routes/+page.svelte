@@ -85,11 +85,7 @@
 		border-radius: 16px;
 	}
 
-	.conclusion h3 {
-		font-size: 24px;
-		line-height: 150%;
-		margin-bottom: 20px;
-	}
+	
 
 	.conclusion-details p {
 		margin: 20px 0;

@@ -176,7 +176,7 @@
 		color: #ffffff;
 		padding: 10px;
 		background-color: #5e5e5e87;
-		font-family: 'e-ukraine';
+		font-family: "Montserrat", sans-serif;
 	}
 
 	.legend {

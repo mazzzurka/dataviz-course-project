@@ -24,7 +24,7 @@
     .logo {
         font-size: 16px;
         line-height: 150%;
-		font-family: 'e-ukraine';
+		font-family: "Montserrat", sans-serif;
         color: rgb(255, 255, 255);
 		font-weight: 400;
         width: 240px;
@@ -33,7 +33,7 @@
     .footer__info {
         color: #ffffff;
         text-align: right;
-        font-family: 'e-ukraine';
+        font-family: "Montserrat", sans-serif;
         font-weight: lighter;
 
     }

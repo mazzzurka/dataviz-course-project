@@ -78,7 +78,7 @@
   {#if tooltipData}
     <div class="tooltip" style={`top: ${mouseY}px; left: ${mouseX}px`}>
       <p class="title">Місяць: {tooltipData.month}</p>
-      <p>Кількість: {tooltipData.value}</p>
+      <p class="title">Кількість: {tooltipData.value}</p>
     </div>
   {/if}
 </div>
@@ -96,6 +96,10 @@
     line-height: 140%;
     max-width: 550px;
     margin-bottom: 80px;
+  }
+
+  .title {
+    margin-bottom: 0;
   }
   
   .main {
@@ -125,9 +129,11 @@
   }
   .tooltip {
 		position: absolute;
+    max-height: 80px;
 		color: #ffffff;
 		padding: 10px;
 		background-color: #5e5e5e87;
 		font-family: "Montserrat", sans-serif;
+    line-height: 120%;
 	}
 </style>
